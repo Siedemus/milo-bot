@@ -1,0 +1,17 @@
+{
+  "name": "milo-bot",
+  "version": "1.0.0",
+  "description": "Milo bot is amazing and wonderful discord bot :)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "watch": "nodemon src/index.js"
+  },
+  "author": "Siedemus",
+  "private": true,
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.1",
+    "eslint": "^8.56.0"
+  }
+}
