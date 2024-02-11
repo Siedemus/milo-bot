@@ -1,5 +1,5 @@
 import { Collection, Events, REST, Routes } from "discord.js";
-import getPaths from "./utils/getPaths.js";
+import getCommandsUrlAndPath from "./utils/getCommandUrlAndPath.js";
 import fs from "fs";
 import path from "path";
 import { CLIENT_ID, DISCORD_TOKEN } from "./config.js";
@@ -7,25 +7,30 @@ import { CLIENT_ID, DISCORD_TOKEN } from "./config.js";
 const registerCommands = async (client) => {
   client.commands = new Collection();
   const commandsList = [];
-  const { commandsURL, commandsPath } = getPaths(import.meta.url);
+  const { commandsURL, commandsPath } = getCommandsUrlAndPath(import.meta.url);
   const rest = new REST().setToken(DISCORD_TOKEN);
 
-  const commandFiles = fs
-    .readdirSync(commandsPath)
-    .filter((file) => file.endsWith(".js"));
+  const commandsFolders = fs.readdirSync(commandsPath);
 
-  for (const file of commandFiles) {
-    const fileURL = path.join(commandsURL, file);
-    const command = await import(fileURL);
-    const commandName = command.default.data.name;
-    const commandExecute = command.default.execute;
-    if (commandName && commandExecute) {
-      client.commands.set(commandName, command);
-      commandsList.push(command.default.data.toJSON());
-    } else {
-      console.log(
-        `[WARNING] The command at ${fileURL} is missing a required "data" or "execute" property.`
-      );
+  for (const folder of commandsFolders) {
+    const folderPath = path.join(commandsPath, folder);
+    const folderUrl = path.join(commandsURL, folder);
+    const commandsFiles = fs
+      .readdirSync(folderPath)
+      .filter((file) => file.endsWith(".js"));
+    for (const file of commandsFiles) {
+      const fileUrl = path.join(folderUrl, file);
+      const command = await import(fileUrl);
+      const commandName = command.default.data.name;
+      const commandExecute = command.default.execute;
+      if (commandName && commandExecute) {
+        client.commands.set(commandName, command);
+        commandsList.push(command.default.data.toJSON());
+      } else {
+        console.log(
+          `[WARNING] The command ${file} doesn't have a name or execute method.`
+        );
+      }
     }
   }
 
@@ -68,7 +73,7 @@ const registerCommands = async (client) => {
 
     console.log(`Successfully reloaded  application (/) commands.`);
   } catch (error) {
-    console.error(`Faile to reload application (/) commands: ${error.message}`);
+    console.error(`Faile to reload application (/) commands: ${error}`);
   }
 };
 
