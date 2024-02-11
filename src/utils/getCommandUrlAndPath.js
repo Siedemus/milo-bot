@@ -1,7 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
-const getPaths = (URL) => {
+const getCommandsUrlAndPath = (URL) => {
   const dirURL = path.dirname(URL);
   const commandsURL = path.join(dirURL, "commands");
   const commandsPath = fileURLToPath(commandsURL);
@@ -12,4 +12,4 @@ const getPaths = (URL) => {
   };
 };
 
-export default getPaths;
+export default getCommandsUrlAndPath;
