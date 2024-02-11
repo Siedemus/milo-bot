@@ -17,7 +17,7 @@ const registerCommands = async (client) => {
     const folderUrl = path.join(commandsURL, folder);
     const commandsFiles = fs
       .readdirSync(folderPath)
-      .filter((file) => file.endsWith(".js"));
+      .filter((file) => file.endsWith("-command.js"));
     for (const file of commandsFiles) {
       const fileUrl = path.join(folderUrl, file);
       const command = await import(fileUrl);
