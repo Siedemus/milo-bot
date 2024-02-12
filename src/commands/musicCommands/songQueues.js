@@ -3,6 +3,19 @@ class SongQueues {
     this.queues = [];
   }
 
+  createGuildQueue(guildId) {
+    const guildQueue = this.queues.filter(
+      (queue) => queue.guildId === guildId
+    )[0];
+
+    if (!guildQueue) {
+      this.queues.push({ guildId, queue: [], loop: false });
+      return;
+    }
+
+    return Error("Queue already exists");
+  }
+
   getQueues() {
     return this.queues;
   }
@@ -14,17 +27,17 @@ class SongQueues {
     return guildQueue;
   }
 
-  addSongToQueue(guildId, { title, path, url }) {
+  addSongToQueue(guildId, { title, id, path, url }) {
     const guildQueue = this.queues.filter(
       (queue) => queue.guildId === guildId
     )[0];
 
     if (!guildQueue) {
-      this.queues.push({ guildId, queue: [{ title, path, url }] });
+      this.queues.push({ guildId, queue: [{ title, id, url, path }] });
       return;
     }
 
-    guildQueue.queue.push({ title, path, url });
+    guildQueue.queue.push({ title, id, path, url });
   }
 
   removeSongFromQueue(guildId) {
@@ -41,6 +54,5 @@ class SongQueues {
     this.queues = [];
   }
 }
-
 
 export default new SongQueues();
