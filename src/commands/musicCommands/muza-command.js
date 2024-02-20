@@ -91,7 +91,7 @@ const commandHandler = async (
 function getRandomWaitingMessage() {
   const waitingMessagesLength = waitingMessages.length;
 
-  return waitingMessages[Math.floor(Math.random() * waitingMessagesLength) + 1];
+  return waitingMessages[Math.floor(Math.random() * waitingMessagesLength)];
 }
 
 const getSongDetails = async (interaction) => {
