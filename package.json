@@ -17,6 +17,7 @@
     "eslint": "^8.56.0",
     "ffmpeg-static": "^5.2.0",
     "opusscript": "^0.0.8",
+    "rimraf": "^5.0.5",
     "sodium-native": "^4.0.7",
     "yt-search": "^2.10.4",
     "ytdl-core": "^4.11.5"
