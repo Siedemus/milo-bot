@@ -1,8 +1,8 @@
 import { Collection, Events, REST, Routes } from "discord.js";
-import getCommandsUrlAndPath from "./utils/getCommandUrlAndPath.js";
+import { CLIENT_ID, DISCORD_TOKEN } from "./config.js";
 import fs from "fs";
 import path from "path";
-import { CLIENT_ID, DISCORD_TOKEN } from "./config.js";
+import getCommandsUrlAndPath from "./utils/getCommandsUrlAndPath.js";
 
 const registerCommands = async (client) => {
   client.commands = new Collection();

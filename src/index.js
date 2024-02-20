@@ -14,10 +14,10 @@ const client = new Client({
   ],
 });
 
-registerCommands(client);
 guildQueues.emptyGuildQueues();
 createQueuesFolder();
 emptyQueuesFolder();
+registerCommands(client);
 
 client.on(Events.ClientReady, () =>
   console.log(`${client.user.tag} is ready!`)
