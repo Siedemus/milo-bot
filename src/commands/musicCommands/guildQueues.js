@@ -1,5 +1,3 @@
-import { rimraf } from "rimraf";
-
 class guildQueues {
   constructor() {
     this.guildQueues = [];
