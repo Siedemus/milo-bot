@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Milo bot is amazing and wonderful discord bot :)",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "watch": "nodemon src/index.js"
+    "start": "npx tsc && node dist/index.js",
+    "watch": "npx tsx watch src/index.ts"
   },
   "author": "Siedemus",
   "private": true,
@@ -22,5 +23,8 @@
     "yt-search": "^2.10.4",
     "ytdl-core": "^4.11.5"
   },
-  "type": "module"
+  "devDependencies": {
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
+  }
 }
