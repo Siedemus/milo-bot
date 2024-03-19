@@ -5,6 +5,7 @@ import handleCommandRegistration from "./utils/handlers/handleCommandsRegistrati
 import handleCommandExecution from "./utils/handlers/handleCommandExecute";
 import { checkEnvVariables } from "./utils/helpers/checkEnvVariables";
 import chalk from "chalk";
+import { createQueuesFolder } from "./utils/helpers/createQueuesFolder";
 
 (async () => {
   if (!checkEnvVariables()) {
@@ -23,6 +24,7 @@ import chalk from "chalk";
 
   const commands = await handleCommandRegistration();
   handleCommandExecution(client, commands);
+  createQueuesFolder();
   handleBotReady(client);
 
   client.login(DISCORD_TOKEN);
