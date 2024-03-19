@@ -6,7 +6,7 @@ import { rimraf } from "rimraf";
 export const createQueuesFolder = () => {
   const rootURL = import.meta.url;
   const rootPATH = fileURLToPath(rootURL);
-  const directionPATH = path.join(rootPATH, "../../../../Queues");
+  const directionPATH = path.join(rootPATH, "../../../../queues");
 
   if (!fs.existsSync(directionPATH)) {
     fs.mkdirSync(directionPATH);
