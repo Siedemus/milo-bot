@@ -23,7 +23,7 @@ const handleCommandsRegistration = async (): Promise<Command[] | null> => {
     const folderURL = path.join(commandsURL, folder);
     const commandFiles = fs
       .readdirSync(folderPATH)
-      .filter((file) => file.endsWith("-command.ts"));
+      .filter((file) => file.includes("-command"));
 
     for (const file of commandFiles) {
       const fileUrl = path.join(folderURL, file);
@@ -55,7 +55,7 @@ const handleCommandsRegistration = async (): Promise<Command[] | null> => {
 
     console.log(
       chalk.bold.greenBright(
-        "[SUCCESS] All application (/) commands successfully refreshed."
+        `[SUCCESS] All (${commands.length}) application (/) commands successfully refreshed.`
       )
     );
   } catch {
