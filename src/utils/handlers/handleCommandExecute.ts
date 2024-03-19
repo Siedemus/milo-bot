@@ -5,7 +5,7 @@ const handleCommandExecution = (
   client: Client,
   commands: Command[] | null
 ): void => {
-  if (typeof commands === null) {
+  if (commands === null) {
     throw new Error("[WARNING] Commands List is empty!");
   }
 
