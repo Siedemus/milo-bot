@@ -9,9 +9,7 @@ import { createQueuesFolder } from "./utils/helpers/createQueuesFolder";
 
 (async () => {
   try {
-    if (!checkEnvVariables()) {
-      throw new Error("[WARNING] ENV variables not found!");
-    }
+    checkEnvVariables();
 
     const client: Client = new Client({
       intents: [
