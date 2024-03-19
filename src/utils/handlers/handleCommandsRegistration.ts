@@ -33,9 +33,7 @@ const handleCommandsRegistration = async (): Promise<Command[] | null> => {
       if (data.name && data.description) {
         commands.push(command);
       } else {
-        console.log(
-          chalk.bold.bgRed(`[WARNING] There's a problem with ${file} command.`)
-        );
+        throw new Error(`[WARNING] There's a problem with ${file} command.`);
       }
     }
   }
@@ -61,10 +59,7 @@ const handleCommandsRegistration = async (): Promise<Command[] | null> => {
       )
     );
   } catch {
-    console.log(
-      chalk.bold.red("[WARNING] There's a problem with command refreshing!")
-    );
-    return null;
+    throw new Error("[WARNING] There's a problem with command refreshing!");
   }
 
   return commands;

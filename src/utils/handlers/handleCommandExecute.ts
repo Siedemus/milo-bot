@@ -1,14 +1,12 @@
-import { ChatInputCommandInteraction, Client, Events } from "discord.js";
+import { Client, Events } from "discord.js";
 import { Command } from "../types/types";
-import chalk from "chalk";
 
 const handleCommandExecution = (
   client: Client,
   commands: Command[] | null
 ): void => {
   if (typeof commands === null) {
-    console.log(chalk.bold.red("[WARNING] Commands List is empty!"));
-    return;
+    throw new Error("[WARNING] Commands List is empty!");
   }
 
   client.on(Events.InteractionCreate, async (interaction) => {

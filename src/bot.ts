@@ -8,24 +8,27 @@ import chalk from "chalk";
 import { createQueuesFolder } from "./utils/helpers/createQueuesFolder";
 
 (async () => {
-  if (!checkEnvVariables()) {
-    console.log(chalk.red.bold("[WARNING] ENV variables not found!"));
-    return;
+  try {
+    if (!checkEnvVariables()) {
+      throw new Error("[WARNING] ENV variables not found!");
+    }
+
+    const client: Client = new Client({
+      intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildVoiceStates,
+      ],
+    });
+
+    const commands = await handleCommandRegistration();
+    handleCommandExecution(client, commands);
+    createQueuesFolder();
+    handleBotReady(client);
+
+    client.login(DISCORD_TOKEN);
+  } catch (error) {
+    console.log(chalk.bold.red(error));
   }
-
-  const client: Client = new Client({
-    intents: [
-      GatewayIntentBits.Guilds,
-      GatewayIntentBits.GuildMessages,
-      GatewayIntentBits.MessageContent,
-      GatewayIntentBits.GuildVoiceStates,
-    ],
-  });
-
-  const commands = await handleCommandRegistration();
-  handleCommandExecution(client, commands);
-  createQueuesFolder();
-  handleBotReady(client);
-
-  client.login(DISCORD_TOKEN);
 })();
