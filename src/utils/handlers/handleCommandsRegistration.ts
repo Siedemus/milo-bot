@@ -4,8 +4,8 @@ import {
   Routes,
 } from "discord.js";
 import { Command, CommandsURLAndPATH } from "../types/types";
-import getCommandsUrlAndPath from "../helpers/getCommandsUrlAndPath";
-import { CLIENT_ID, DISCORD_TOKEN } from "../configs/config";
+import getCommandsUrlAndPath from "../helpers/getCommandsUrlAndPath.js";
+import { CLIENT_ID, DISCORD_TOKEN } from "../configs/config.js";
 import fs from "fs";
 import path from "path";
 import chalk from "chalk";

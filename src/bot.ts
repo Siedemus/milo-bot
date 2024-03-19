@@ -1,11 +1,11 @@
 import { Client, GatewayIntentBits } from "discord.js";
-import { DISCORD_TOKEN } from "./utils/configs/config";
-import handleBotReady from "./utils/handlers/handleBotReady";
-import handleCommandRegistration from "./utils/handlers/handleCommandsRegistration";
-import handleCommandExecution from "./utils/handlers/handleCommandExecute";
-import { checkEnvVariables } from "./utils/helpers/checkEnvVariables";
+import { DISCORD_TOKEN } from "./utils/configs/config.js";
+import handleBotReady from "./utils/handlers/handleBotReady.js";
+import handleCommandRegistration from "./utils/handlers/handleCommandsRegistration.js";
+import handleCommandExecution from "./utils/handlers/handleCommandExecute.js";
+import { checkEnvVariables } from "./utils/helpers/checkEnvVariables.js";
 import chalk from "chalk";
-import { createQueuesFolder } from "./utils/helpers/createQueuesFolder";
+import { createQueuesFolder } from "./utils/helpers/createQueuesFolder.js";
 
 (async () => {
   try {

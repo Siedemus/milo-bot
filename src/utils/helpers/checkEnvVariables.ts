@@ -1,4 +1,4 @@
-import { CLIENT_ID, DISCORD_TOKEN } from "../configs/config";
+import { CLIENT_ID, DISCORD_TOKEN } from "../configs/config.js";
 
 export const checkEnvVariables = (): never | void => {
   if (!(CLIENT_ID !== undefined && DISCORD_TOKEN !== undefined)) {
