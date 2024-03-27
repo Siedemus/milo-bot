@@ -1,0 +1,1 @@
+export const NAMESPACE = "36a5983a-a11e-42bd-827d-8bedcadb34ab";
