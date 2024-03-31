@@ -211,26 +211,12 @@ const handleAudioPlayer = async (
 
   if (guildQueues.getGuildSongQueue(guildId)!.length === 1) {
     const resource = createAudioResource(songPath);
-    handleConnectionDestroy(guildId, interaction);
     guildQueuePlayer.play(resource);
     guildQueueConnection.subscribe(guildQueuePlayer);
     handleNextSong(guildId);
   }
 
-  await replyWithSongInfo(interaction, title, thumbnail);
-};
-
-const handleConnectionDestroy = (
-  guildId: string,
-  interaction: VoiceExtendedCommandInteraction
-) => {
-  const guildQueueConnection = guildQueues.getGuildQueueConnection(guildId)!;
-
-  guildQueueConnection.on(VoiceConnectionStatus.Disconnected, () => {
-    interaction.channel?.send({
-      embeds: [byeEmbed],
-    });
-  });
+  await replyWithSongInfo(interaction, title, thumbnail, url);
 };
 
 const handleNextSong = (guildId: string) => {
@@ -270,15 +256,17 @@ const handleNextSong = (guildId: string) => {
 const replyWithSongInfo = async (
   interaction: VoiceExtendedCommandInteraction,
   title: string,
-  thumbnail: string | undefined
+  thumbnail: string | undefined,
+  url: string
 ) => {
   await interaction.editReply({
     embeds: [
       successEmbed
         .setDescription(
-          `${interaction.user.username} added ${title} to song queue.`
+          `***${interaction.user.username} added ${title} to song queue.***`
         )
-        .setImage(thumbnail ? thumbnail : placeholderImage),
+        .setImage(thumbnail ? thumbnail : placeholderImage)
+        .setURL(url),
     ],
   });
 };

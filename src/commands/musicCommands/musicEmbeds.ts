@@ -32,16 +32,6 @@ export const successEmbed = new EmbedBuilder()
   })
   .setTimestamp();
 
-export const byeEmbed = new EmbedBuilder()
-  .setColor("#757575")
-  .setImage(byeImage)
-  .setTitle("Bye bye ☀️😎🏖️🍹")
-  .setDescription("There was no song to play so I'm going to the Bachamas.")
-  .setFooter({
-    text: "© Milo Driven Development, All rights reserved.",
-  })
-  .setTimestamp();
-
 export const infoEmbed = new EmbedBuilder()
   .setColor("#0d1ac6")
   .setImage(infoImage)
