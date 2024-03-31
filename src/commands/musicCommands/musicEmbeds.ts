@@ -50,3 +50,11 @@ export const infoEmbed = new EmbedBuilder()
     text: "© Milo Driven Development, All rights reserved.",
   })
   .setTimestamp();
+
+export const loopEmbed = new EmbedBuilder()
+  .setColor("#FCF811")
+  .setDescription("Song queue loop status changed.")
+  .setFooter({
+    text: "© Milo Driven Development, All rights reserved.",
+  })
+  .setTimestamp();
