@@ -1,8 +1,8 @@
 import { EmbedBuilder } from "discord.js";
 import {
-  byeImage,
   errorImage,
   infoImage,
+  skipImage,
   waitingImage,
 } from "../../utils/resources/imageLinks.js";
 
@@ -44,6 +44,15 @@ export const infoEmbed = new EmbedBuilder()
 export const loopEmbed = new EmbedBuilder()
   .setColor("#FCF811")
   .setDescription("Song queue loop status changed.")
+  .setFooter({
+    text: "© Milo Driven Development, All rights reserved.",
+  })
+  .setTimestamp();
+
+export const skipEmebed = new EmbedBuilder()
+  .setColor("#f47302")
+  .setImage(skipImage)
+  .setDescription("Song skipped.")
   .setFooter({
     text: "© Milo Driven Development, All rights reserved.",
   })
