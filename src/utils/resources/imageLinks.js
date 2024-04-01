@@ -20,3 +20,6 @@ export const infoImage =
 
 export const skipImage =
   "https://media.tenor.com/Wz-bYDRVmFoAAAAM/ntuni-cat.gif";
+
+export const queueImage =
+  "https://media1.tenor.com/m/CR4cQU2ybDkAAAAC/plinker.gif";

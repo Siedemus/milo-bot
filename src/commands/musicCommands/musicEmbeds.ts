@@ -2,6 +2,7 @@ import { EmbedBuilder } from "discord.js";
 import {
   errorImage,
   infoImage,
+  queueImage,
   skipImage,
   waitingImage,
 } from "../../utils/resources/imageLinks.js";
@@ -57,3 +58,8 @@ export const skipEmebed = new EmbedBuilder()
     text: "© Milo Driven Development, All rights reserved.",
   })
   .setTimestamp();
+
+export const queueEmbed = new EmbedBuilder()
+  .setColor("#c9224c")
+  .setTitle("***Current song queue:***")
+  .setImage(queueImage);
