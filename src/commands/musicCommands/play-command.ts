@@ -15,7 +15,6 @@ import {
   VoiceExtendedCommandInteraction,
 } from "../../utils/types/types";
 import {
-  byeEmbed,
   errorEmbed,
   infoEmbed,
   successEmbed,
@@ -209,7 +208,7 @@ const handleAudioPlayer = async (
   const guildQueuePlayer = guildQueues.getGuildQueuePlayer(guildId)!;
   const guildQueueConnection = guildQueues.getGuildQueueConnection(guildId)!;
 
-  if (guildQueues.getGuildSongQueue(guildId)!.length === 1) {
+  if (guildQueuePlayer.state.status !== AudioPlayerStatus.Playing) {
     const resource = createAudioResource(songPath);
     guildQueuePlayer.play(resource);
     guildQueueConnection.subscribe(guildQueuePlayer);
