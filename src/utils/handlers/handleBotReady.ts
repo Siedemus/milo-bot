@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import { Client, Events } from "discord.js";
-import activityStatuses from "../resources/activityStatuses";
+import activityStatuses from "../resources/activityStatuses.js";
 
 const handleBotReady = (client: Client) => {
   client.once(Events.ClientReady, () => {

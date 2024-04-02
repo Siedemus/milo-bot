@@ -1,8 +1,7 @@
 import { SlashCommandBuilder } from "discord.js";
 import { Song, VoiceExtendedCommandInteraction } from "../../utils/types/types";
 import guildQueues from "./guildQueues.js";
-import { infoEmbed, skipEmebed } from "./musicEmbeds";
-import { createAudioResource } from "@discordjs/voice";
+import { infoEmbed, skipEmebed } from "./musicEmbeds.js";
 
 export default {
   data: new SlashCommandBuilder()
