@@ -15,11 +15,10 @@ export default {
     )[0];
 
     if (!user) {
-      await replyWithProblemInfo(
+      return await replyWithProblemInfo(
         interaction,
-        "User don't exists. Try to use `create` command."
+        "***User don't exists. Try to use `create` command.***"
       );
-      return;
     }
 
     await updateUserBalance(interaction, user);
@@ -37,7 +36,7 @@ const updateUserBalance = async (
   interaction: CommandInteraction,
   user: User
 ) => {
-  const randomAmount = Math.floor(Math.random() * 150);
+  const randomAmount = Math.floor(Math.random() * 550);
   const userBalance = user.balance;
   const newUserbalance = userBalance + randomAmount;
 
@@ -46,9 +45,9 @@ const updateUserBalance = async (
     data: { balance: newUserbalance },
   });
 
-  const formattedContent = `${
+  const formattedContent = `***${
     works[Math.floor(Math.random() * works.length)]
-  }, you earned ${randomAmount}$. Now your balance is ${newUserbalance}$`;
+  }, you earned ${randomAmount}$. Now your balance is ${newUserbalance}$***`;
 
   await replyWithSuccesInfo(interaction, formattedContent);
 };
