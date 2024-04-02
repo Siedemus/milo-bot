@@ -1,15 +1,19 @@
 import chalk from "chalk";
-import { ActivityType, Client, Events } from "discord.js";
+import { Client, Events } from "discord.js";
+import activityStatuses from "../resources/activityStatuses";
 
 const handleBotReady = (client: Client) => {
   client.once(Events.ClientReady, () => {
     console.log(chalk.bold.green("[SUCCESS] Milo's ready to go!"));
+    const activitiesLength = activityStatuses.length;
 
-    client.user?.setActivity({
-      name: "Anarcho-capitalism",
-      type: ActivityType.Watching,
-      state: "Femboy's heaven",
-    });
+    setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * activitiesLength);
+
+      client.user?.setActivity({
+        name: activityStatuses[randomIndex],
+      });
+    }, 5000);
   });
 };
 
