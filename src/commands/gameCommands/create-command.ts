@@ -79,7 +79,7 @@ const replyWithSuccesInfo = async (
     embeds: [
       successEmbed.setDescription(
         `***User ${
-          title ? `with title ${title}` : null
+          title ? `with title ${title}` : ""
         } created. Your starting level is (1) and your balance is 1000$. Have fun as the ${gameClass}! 🎉🎊🎈***`
       ),
     ],
