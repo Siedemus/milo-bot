@@ -5,9 +5,9 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "build": "npx tsc",
-    "start": "node dist/bot.js",
-    "watch": "npx tsx watch src/bot.ts"
+    "build": "bun tsc",
+    "start": "bun run dist/bot.js",
+    "watch": "bun tsx watch src/bot.ts"
   },
   "author": "Siedemus",
   "private": true,
