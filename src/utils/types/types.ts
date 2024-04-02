@@ -5,7 +5,6 @@ import {
   SlashCommandBuilder,
   VoiceState,
 } from "discord.js";
-import fs from "fs";
 import yts from "yt-search";
 
 export interface Command {
@@ -55,3 +54,5 @@ export interface EmbedModifier {
   timeStamp?: true;
   footer?: { text: string; iconURL: string };
 }
+
+export type GameClass = "Warrior" | "Assassin" | "Mage" | "Archer" | "Thief";
