@@ -9,6 +9,7 @@ import yts from "yt-search";
 
 export interface Command {
   default: {
+    cooldown: number;
     data: SlashCommandBuilder;
     execute: (interaction: CommandInteraction, client: Client) => Promise<void>;
   };
