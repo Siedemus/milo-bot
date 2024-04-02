@@ -19,7 +19,7 @@ import {
   infoEmbed,
   successEmbed,
   waitingEmbed,
-} from "./musicEmbeds.js";
+} from "../../utils/resources/embeds.js";
 import waitingMessages from "../../utils/resources/waitingMessages.js";
 import yts from "yt-search";
 import path from "path";

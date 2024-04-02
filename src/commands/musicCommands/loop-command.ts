@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "discord.js";
 import { VoiceExtendedCommandInteraction } from "../../utils/types/types";
 import guildQueues from "./guildQueues.js";
-import { infoEmbed, loopEmbed } from "./musicEmbeds.js";
+import { infoEmbed, loopEmbed } from "../../utils/resources/embeds.js";
 import {
   loopStatusFalse,
   loopStatusTrue,
