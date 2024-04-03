@@ -1,7 +1,9 @@
 import { Client, Events } from "discord.js";
 import { Command } from "../types/types";
+import { v5 as uuidV5 } from "uuid";
+import { COOLDOWN_NAMESPACE } from "../resources/namespaces";
 
-const cooldowns: Map<string, number> = new Map();
+const cooldowns: Map<string, { commandName: string; now: number }> = new Map();
 
 const handleCommandExecution = async (
   client: Client,
@@ -22,14 +24,18 @@ const handleCommandExecution = async (
     })[0];
 
     if (matchingCommand.default.cooldown !== undefined) {
+      const prefix = uuidV5(
+        interaction.user.id + commandName,
+        COOLDOWN_NAMESPACE
+      );
       const now = Date.now();
       const cooldownAmount = matchingCommand.default.cooldown * 1000;
-      const timeStamp = cooldowns.get(interaction.user.id);
+      const timeStamp = cooldowns.get(prefix);
 
       if (timeStamp) {
-        const expirationTime = timeStamp + cooldownAmount;
+        const expirationTime = timeStamp.now + cooldownAmount;
 
-        if (now < expirationTime) {
+        if (now < expirationTime && timeStamp.commandName === commandName) {
           const timeLeft = (expirationTime - now) / 1000;
           await interaction.reply(
             `***Please wait ${timeLeft.toFixed(
@@ -40,7 +46,10 @@ const handleCommandExecution = async (
         }
       }
 
-      cooldowns.set(interaction.user.id, now);
+      cooldowns.set(prefix, {
+        commandName: commandName,
+        now: now,
+      });
       setTimeout(() => cooldowns.delete(interaction.user.id), cooldownAmount);
     }
 
