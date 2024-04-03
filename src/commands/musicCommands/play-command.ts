@@ -30,7 +30,7 @@ import ytdl from "ytdl-core";
 import guildQueues from "./guildQueues.js";
 import chalk from "chalk";
 import { placeholderImage } from "../../utils/resources/imageLinks.js";
-import { NAMESPACE } from "../../utils/resources/namespaces.js";
+import { PLAY_NAMESPACE } from "../../utils/resources/namespaces.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -124,7 +124,7 @@ const createGuildQueueFolderIfNeeded = (guildId: string): string => {
 };
 
 const createSongPath = (title: string, guildQueueFolderPath: string) => {
-  const songId = uuidV5(title, NAMESPACE);
+  const songId = uuidV5(title, PLAY_NAMESPACE);
   const songPath = `${guildQueueFolderPath}\\${songId}.mp3`;
   return songPath;
 };
