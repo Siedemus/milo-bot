@@ -1,8 +1,9 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 import { prisma } from "../../../prisma/prismaClient";
 import { infoEmbed, successEmbed } from "../../utils/resources/embeds";
-import { mappedGameClasses } from "../../utils/resources/gameClasses";
 import { GameClass } from "../../utils/types/types";
+import { mapChoices } from "../../utils/helpers/mapChoices";
+import { gameClasses } from "../../utils/resources/gameClasses";
 
 export default {
   data: new SlashCommandBuilder()
@@ -13,7 +14,7 @@ export default {
         .setName("class")
         .setDescription("Choose your class")
         .setRequired(true)
-        .addChoices(...mappedGameClasses)
+        .addChoices(...mapChoices(gameClasses))
     )
     .addStringOption((option) =>
       option.setName("title").setDescription("You can set your game's title.")
