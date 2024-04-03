@@ -57,3 +57,8 @@ export interface EmbedModifier {
 }
 
 export type GameClass = "Warrior" | "Assassin" | "Mage" | "Archer" | "Thief";
+
+export interface DogApiResponse {
+  message: string;
+  status: string;
+}
