@@ -34,7 +34,6 @@ export default {
       }
     } else {
       try {
-        console.log(breed);
         const response = await fetch(
           `https://dog.ceo/api/breed/${breed}/images/random`
         );
