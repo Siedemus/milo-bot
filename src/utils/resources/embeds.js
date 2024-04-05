@@ -75,3 +75,11 @@ export const slotEmbed = new EmbedBuilder()
     text: "© Milo Driven Development, All rights reserved.",
   })
   .setTimestamp();
+
+export const balanceEmbed = new EmbedBuilder()
+  .setTitle("***🪙🪙🪙YOUR BALANCE🪙🪙🪙***")
+  .setColor("#ffd700")
+  .setFooter({
+    text: "© Milo Driven Development, All rights reserved.",
+  })
+  .setTimestamp();
