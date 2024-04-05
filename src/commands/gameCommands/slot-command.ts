@@ -7,7 +7,7 @@ import { mapChoices } from "../../utils/helpers/mapChoices";
 import factors from "../../utils/resources/factors";
 
 export default {
-  cooldown: 1,
+  cooldown: 20,
   data: new SlashCommandBuilder()
     .setName("slot")
     .setDescription("SLOTS! SLOTS! SLOTS!")
