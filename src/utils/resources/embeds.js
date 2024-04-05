@@ -62,4 +62,16 @@ export const skipEmebed = new EmbedBuilder()
 export const queueEmbed = new EmbedBuilder()
   .setColor("#c9224c")
   .setTitle("***Current song queue:***")
-  .setImage(queueImage);
+  .setImage(queueImage)
+  .setFooter({
+    text: "© Milo Driven Development, All rights reserved.",
+  })
+  .setTimestamp();
+
+export const slotEmbed = new EmbedBuilder()
+  .setTitle("***🍒🍹🎈🐉🚀 SLOT MACHINE 🍒🍹🎈🐉🚀***")
+  .setColor("#Ff3457")
+  .setFooter({
+    text: "© Milo Driven Development, All rights reserved.",
+  })
+  .setTimestamp();
