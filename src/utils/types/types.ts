@@ -62,3 +62,16 @@ export interface DogApiResponse {
   message: string;
   status: string;
 }
+
+export type Factor = "x2" | "x4" | "x6";
+
+export interface Rows {
+  upperRow: string[];
+  middleRow: string[];
+  lowerRow: string[];
+}
+
+export interface Result {
+  status: boolean;
+  winCount: number;
+}
