@@ -1,2 +1,15 @@
+# Node modules folder
 node_modules
+
+# Env file 
 .env
+
+
+# "Distribution" folder
+dist
+
+# Folder that contains downloaded songs for song queue. (Creates at the start of the app.)
+queues
+
+# Bun binary file (I'm testing bun. (It's wonderful))
+bun.lockb
