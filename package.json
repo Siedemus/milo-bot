@@ -7,7 +7,8 @@
   "scripts": {
     "build": "bun tsc",
     "start": "bun run dist/bot.js",
-    "watch": "bun tsx watch src/bot.ts"
+    "watch": "bun tsx watch src/bot.ts",
+    "clean": "bun rimraf dist"
   },
   "author": "Siedemus",
   "private": true,
