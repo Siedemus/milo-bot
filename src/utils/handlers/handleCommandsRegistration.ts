@@ -4,7 +4,7 @@ import {
   Routes,
 } from "discord.js";
 import { Command, CommandsURLAndPATH } from "../types/types";
-import getCommandsUrlAndPath from "../helpers/getCommandsUrlAndPath.js";
+import { getCommandsURLAndPATH } from "../helpers/getCommandsUrlAndPath";
 import { CLIENT_ID, DISCORD_TOKEN } from "../configs/config.js";
 import fs from "fs";
 import path from "path";
@@ -15,7 +15,7 @@ const handleCommandsRegistration = async (): Promise<Command[] | null> => {
   const commands: Command[] = [];
   const commandsJSON: CommandJSONBody[] = [];
   const { commandsURL, commandsPATH }: CommandsURLAndPATH =
-    getCommandsUrlAndPath(import.meta.url);
+    getCommandsURLAndPATH(import.meta.url);
   const commandFolders = fs.readdirSync(commandsPATH);
 
   for (const folder of commandFolders) {
