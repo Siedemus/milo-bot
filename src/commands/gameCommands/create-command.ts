@@ -19,7 +19,7 @@ export default {
     .addStringOption((option) =>
       option.setName("title").setDescription("You can set your game's title.")
     ),
-  execute: async (interaction: CommandInteraction) => {
+  execute: async (interaction: CommandInteraction): Promise<void> => {
     let user = (
       await prisma.user.findMany({
         where: { id: interaction.user.id },
@@ -46,7 +46,7 @@ export default {
 const replyWithProblemInfo = async (
   interaction: CommandInteraction,
   content: string
-) => {
+): Promise<void> => {
   await interaction.reply({
     embeds: [infoEmbed.setDescription(content)],
   });
@@ -56,7 +56,7 @@ const createNewUser = async (
   interaction: CommandInteraction,
   title: string | null,
   gameClass: GameClass
-) => {
+): Promise<void> => {
   await prisma.user.create({
     data: {
       id: interaction.user.id,
@@ -75,7 +75,7 @@ const replyWithSuccesInfo = async (
   interaction: CommandInteraction,
   title: string | null,
   gameClass: GameClass
-) => {
+): Promise<void> => {
   await interaction.reply({
     embeds: [
       successEmbed.setDescription(

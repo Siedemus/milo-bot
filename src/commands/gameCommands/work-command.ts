@@ -9,7 +9,7 @@ export default {
   data: new SlashCommandBuilder()
     .setName("work")
     .setDescription("Work to earn some money."),
-  execute: async (interaction: CommandInteraction) => {
+  execute: async (interaction: CommandInteraction): Promise<void> => {
     const user = (
       await prisma.user.findMany({ where: { id: interaction.user.id } })
     )[0];
@@ -28,14 +28,14 @@ export default {
 const replyWithProblemInfo = async (
   interaction: CommandInteraction,
   content: string
-) => {
+): Promise<void> => {
   await interaction.reply({ embeds: [infoEmbed.setDescription(content)] });
 };
 
 const updateUserBalance = async (
   interaction: CommandInteraction,
   user: User
-) => {
+): Promise<void> => {
   const randomAmount = Math.floor(Math.random() * 550);
   const userBalance = user.balance;
   const newUserbalance = userBalance + randomAmount;
@@ -55,6 +55,6 @@ const updateUserBalance = async (
 const replyWithSuccesInfo = async (
   interaction: CommandInteraction,
   content: string
-) => {
+): Promise<void> => {
   await interaction.reply({ embeds: [successEmbed.setDescription(content)] });
 };

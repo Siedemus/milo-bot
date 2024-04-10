@@ -1,7 +1,12 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 import { prisma } from "../../../prisma/prismaClient";
 import { infoEmbed, slotEmbed } from "../../utils/resources/embeds";
-import { Factor, Result, Rows } from "../../utils/types/types";
+import {
+  Factor,
+  Result,
+  Rows,
+  SlotMachineResult,
+} from "../../utils/types/types";
 import slotMachineEmojis from "../../utils/resources/slotMachineEmojis";
 import { mapChoices } from "../../utils/helpers/mapChoices";
 import factors from "../../utils/resources/factors";
@@ -25,7 +30,7 @@ export default {
         .addChoices(...mapChoices(Object.keys(factors)))
         .setRequired(true)
     ),
-  execute: async (interaction: CommandInteraction) => {
+  execute: async (interaction: CommandInteraction): Promise<void> => {
     const user = (
       await prisma.user.findMany({ where: { id: interaction.user.id } })
     )[0];
@@ -72,7 +77,7 @@ const handleSlotCommand = async (
   );
 };
 
-const getSlotMachineResult = (factor: Factor) => {
+const getSlotMachineResult = (factor: Factor): SlotMachineResult => {
   const iterations = factors[factor].slotsNumber;
   const result: Result = { status: false, winCount: 0 };
   const rows: Rows = {
@@ -100,7 +105,7 @@ const getSlotMachineResult = (factor: Factor) => {
   return { result, rows };
 };
 
-const getSlotMachineEmoji = (iterations: number) => {
+const getSlotMachineEmoji = (iterations: number): string => {
   return slotMachineEmojis[Math.floor(Math.random() * iterations)];
 };
 
@@ -111,7 +116,7 @@ const calculateAndUpdateBalance = async (
   bet: number,
   balance: number,
   interaction: CommandInteraction
-) => {
+): Promise<void> => {
   const formattedSlotResult = `
   -----------> ${rows.upperRow.map((item) => `[${item}]`)} <-----------
   -----------> ${rows.middleRow.map((item) => `[${item}]`)} <-----------

@@ -75,3 +75,5 @@ export interface Result {
   status: boolean;
   winCount: number;
 }
+
+export type SlotMachineResult = { result: Result; rows: Rows };

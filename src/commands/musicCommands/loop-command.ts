@@ -11,7 +11,9 @@ export default {
   data: new SlashCommandBuilder()
     .setName("loop")
     .setDescription("Loop current song."),
-  execute: async (interaction: VoiceExtendedCommandInteraction) => {
+  execute: async (
+    interaction: VoiceExtendedCommandInteraction
+  ): Promise<void> => {
     const channelId = interaction.member?.voice.channelId;
 
     if (!channelId) {
@@ -36,7 +38,7 @@ export default {
 const replyWithProblemInfo = async (
   interaction: VoiceExtendedCommandInteraction,
   content: string
-) => {
+): Promise<void> => {
   await interaction.reply({
     embeds: [infoEmbed.setDescription(content)],
     ephemeral: true,
@@ -46,7 +48,7 @@ const replyWithProblemInfo = async (
 const toggleLoopStatusChange = async (
   guildId: string,
   interaction: VoiceExtendedCommandInteraction
-) => {
+): Promise<void> => {
   guildQueues.changeGuildQueueLoopStatus(guildId);
   const loopStatus = guildQueues.getGuildQueueLoopStatus(guildId)!;
 
@@ -61,7 +63,7 @@ const statusChangeReply = async (
   interaction: VoiceExtendedCommandInteraction,
   content: string,
   status: boolean
-) => {
+): Promise<void> => {
   await interaction.reply({
     embeds: [
       loopEmbed

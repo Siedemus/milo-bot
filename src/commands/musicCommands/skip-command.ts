@@ -7,7 +7,9 @@ export default {
   data: new SlashCommandBuilder()
     .setName("skip")
     .setDescription("Skip current song."),
-  execute: async (interaction: VoiceExtendedCommandInteraction) => {
+  execute: async (
+    interaction: VoiceExtendedCommandInteraction
+  ): Promise<void> => {
     const channelId = interaction.member?.voice.channelId;
 
     if (!channelId) {
@@ -35,7 +37,7 @@ export default {
 const replyWithProblemInfo = async (
   interaction: VoiceExtendedCommandInteraction,
   content: string
-) => {
+): Promise<void> => {
   await interaction.reply({
     embeds: [infoEmbed.setDescription(content)],
     ephemeral: true,
@@ -46,7 +48,7 @@ const handleSongSkip = async (
   guildId: string,
   songQueue: Song[],
   interaction: VoiceExtendedCommandInteraction
-) => {
+): Promise<void> => {
   const guildQueuePlayer = guildQueues.getGuildQueuePlayer(guildId)!;
   const currentSongTitle = songQueue[0].title;
 
@@ -57,7 +59,7 @@ const handleSongSkip = async (
 const replyWithSkipInfo = async (
   currentSongTitle: string,
   interaction: VoiceExtendedCommandInteraction
-) => {
+): Promise<void> => {
   await interaction.reply({
     embeds: [skipEmebed.setTitle(`Successfully skipped: ${currentSongTitle}`)],
   });

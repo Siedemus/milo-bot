@@ -14,7 +14,7 @@ export default {
         .setDescription("Choose dog breed if you want.")
         .addChoices(...mapChoices(breeds))
     ),
-  execute: async (interaction: CommandInteraction) => {
+  execute: async (interaction: CommandInteraction): Promise<void> => {
     const breed = interaction.options.get("breed")?.value;
 
     if (!breed) {

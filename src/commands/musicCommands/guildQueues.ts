@@ -18,7 +18,7 @@ class guildQueues {
     guildId: string,
     connection: VoiceConnection,
     player: AudioPlayer
-  ) {
+  ): void {
     const guildQueue = this.getGuildQueue(guildId);
 
     if (!guildQueue) {
@@ -36,7 +36,7 @@ class guildQueues {
     }
   }
 
-  public removeSongFromGuildSongQueue(guildId: string) {
+  public removeSongFromGuildSongQueue(guildId: string): void {
     const guildQueue = this.getGuildQueue(guildId);
 
     if (guildQueue) {
@@ -54,7 +54,7 @@ class guildQueues {
     }
   }
 
-  public addSongToGuildSongQueue(guildId: string, song: Song) {
+  public addSongToGuildSongQueue(guildId: string, song: Song): void {
     const guildQueue = this.getGuildQueue(guildId);
 
     if (guildQueue) {
@@ -66,7 +66,7 @@ class guildQueues {
     }
   }
 
-  public changeGuildQueueLoopStatus(guildId: string) {
+  public changeGuildQueueLoopStatus(guildId: string): void {
     const guildQueue = this.getGuildQueue(guildId);
 
     if (guildQueue) {
@@ -78,19 +78,19 @@ class guildQueues {
     }
   }
 
-  public getGuildQueueLoopStatus(guildId: string) {
+  public getGuildQueueLoopStatus(guildId: string): boolean | undefined {
     const guildQueue = this.getGuildQueue(guildId);
 
     return guildQueue?.loop;
   }
 
-  public getGuildSongQueue(guildId: string) {
+  public getGuildSongQueue(guildId: string): Song[] | undefined {
     const guildQueue = this.getGuildQueue(guildId);
 
     return guildQueue?.songQueue;
   }
 
-  public setGuildQueuePlayer(guildId: string, audioPlayer: AudioPlayer) {
+  public setGuildQueuePlayer(guildId: string, audioPlayer: AudioPlayer): void {
     const guildQueue = this.getGuildQueue(guildId);
 
     if (guildQueue) {
@@ -102,13 +102,16 @@ class guildQueues {
     }
   }
 
-  public getGuildQueuePlayer(guildId: string) {
+  public getGuildQueuePlayer(guildId: string): AudioPlayer | undefined {
     const guildQueue = this.getGuildQueue(guildId);
 
     return guildQueue?.player;
   }
 
-  public setGuildQueueConnection(guildId: string, connection: VoiceConnection) {
+  public setGuildQueueConnection(
+    guildId: string,
+    connection: VoiceConnection
+  ): void {
     const guildQueue = this.getGuildQueue(guildId);
 
     if (guildQueue) {
@@ -120,7 +123,7 @@ class guildQueues {
     }
   }
 
-  public getGuildQueueConnection(guildId: string) {
+  public getGuildQueueConnection(guildId: string): VoiceConnection | undefined {
     const guildQueue = this.getGuildQueue(guildId);
 
     return guildQueue?.connection;

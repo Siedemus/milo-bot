@@ -7,7 +7,9 @@ export default {
   data: new SlashCommandBuilder()
     .setName("queue")
     .setDescription("Get the first 5 songs from song queue."),
-  execute: async (interaction: VoiceExtendedCommandInteraction) => {
+  execute: async (
+    interaction: VoiceExtendedCommandInteraction
+  ): Promise<void> => {
     const guildId = interaction.guildId!;
     const songQueue = guildQueues.getGuildSongQueue(guildId);
 
@@ -24,7 +26,7 @@ export default {
 const replyWithProblemInfo = async (
   interaction: VoiceExtendedCommandInteraction,
   content: string
-) => {
+): Promise<void> => {
   await interaction.reply({
     embeds: [infoEmbed.setDescription(content)],
     ephemeral: true,
@@ -34,12 +36,12 @@ const replyWithProblemInfo = async (
 const handleCommandExecution = async (
   interaction: VoiceExtendedCommandInteraction,
   songQueue: Song[]
-) => {
+): Promise<void> => {
   await interaction.reply({
     embeds: [
       queueEmbed.setFields(
         songQueue.map((song, index) => {
-          return { name: `[${index +1}]. ${song.title}`, value: song.url };
+          return { name: `[${index + 1}]. ${song.title}`, value: song.url };
         })
       ),
     ],

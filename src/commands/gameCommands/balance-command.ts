@@ -6,7 +6,7 @@ export default {
   data: new SlashCommandBuilder()
     .setName("balance")
     .setDescription("Check your balance."),
-  execute: async (interaction: CommandInteraction) => {
+  execute: async (interaction: CommandInteraction): Promise<void>  => {
     const user = (
       await prisma.user.findMany({ where: { id: interaction.user.id } })
     )[0];
@@ -27,7 +27,7 @@ export default {
 const replyWithProblemInfo = async (
   interaction: CommandInteraction,
   content: string
-) => {
+): Promise<void>  => {
   await interaction.reply({
     embeds: [infoEmbed.setDescription(content)],
   });

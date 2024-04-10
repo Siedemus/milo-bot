@@ -39,7 +39,9 @@ export default {
     .addStringOption((option) =>
       option.setName("url").setDescription("Your song url.").setRequired(true)
     ),
-  execute: async (interaction: VoiceExtendedCommandInteraction) => {
+  execute: async (
+    interaction: VoiceExtendedCommandInteraction
+  ): Promise<void> => {
     await handleCommandExecution(interaction);
   },
 };
@@ -83,7 +85,7 @@ const handleCommandExecution = async (
 const replyWithProblemInfo = async (
   interaction: VoiceExtendedCommandInteraction,
   content: string
-) => {
+): Promise<void> => {
   await interaction.reply({
     embeds: [infoEmbed.setDescription(content)],
     ephemeral: true,
@@ -92,7 +94,7 @@ const replyWithProblemInfo = async (
 
 const replyWithWaitingMessage = async (
   interaction: VoiceExtendedCommandInteraction
-) => {
+): Promise<void> => {
   const waitingMessage =
     waitingMessages[Math.floor(Math.random() * waitingMessages.length)];
   await interaction.reply({
@@ -123,7 +125,10 @@ const createGuildQueueFolderIfNeeded = (guildId: string): string => {
   return guildQueuePath;
 };
 
-const createSongPath = (title: string, guildQueueFolderPath: string) => {
+const createSongPath = (
+  title: string,
+  guildQueueFolderPath: string
+): string => {
   const songId = uuidV5(title, PLAY_NAMESPACE);
   const songPath = `${guildQueueFolderPath}\\${songId}.mp3`;
   return songPath;
@@ -202,7 +207,7 @@ const handleAudioPlayer = async (
   songPath: string,
   thumbnail: string | undefined,
   interaction: VoiceExtendedCommandInteraction
-) => {
+): Promise<void> => {
   guildQueues.addSongToGuildSongQueue(guildId, { title, url, songPath });
 
   const guildQueuePlayer = guildQueues.getGuildQueuePlayer(guildId)!;
@@ -218,7 +223,7 @@ const handleAudioPlayer = async (
   await replyWithSongInfo(interaction, title, thumbnail, url);
 };
 
-const handleNextSong = (guildId: string) => {
+const handleNextSong = (guildId: string): void => {
   const guildQueuePlayer = guildQueues.getGuildQueuePlayer(guildId)!;
 
   guildQueuePlayer.on(AudioPlayerStatus.Idle, () => {
@@ -257,7 +262,7 @@ const replyWithSongInfo = async (
   title: string,
   thumbnail: string | undefined,
   url: string
-) => {
+): Promise<void> => {
   await interaction.editReply({
     embeds: [
       successEmbed
@@ -272,7 +277,7 @@ const replyWithSongInfo = async (
 
 const replyWithErrorInfo = async (
   interaction: VoiceExtendedCommandInteraction
-) => {
+): Promise<void> => {
   await interaction.editReply({
     embeds: [
       errorEmbed.setDescription(
