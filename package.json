@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "bun tsc",
-    "start": "bun run dist/bot.js",
+    "start": "bun run dist/src/bot.js",
     "watch": "bun tsx watch src/bot.ts",
     "clean": "bun rimraf dist"
   },
